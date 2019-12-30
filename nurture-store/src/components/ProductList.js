@@ -6,7 +6,7 @@ import {ProductConsumer} from '../context'
 
 export default class ProductList extends Component {
     render() {
-        //console.log(this.state)
+        
         return (
             <React.Fragment>
                 <div className= "py-5">
@@ -15,8 +15,14 @@ export default class ProductList extends Component {
 
                 <div className= "row">
                 <ProductConsumer>
-                    {value=>{
+                    {/* {value=>{
                         return value.products.map(product => {
+
+                            return <Product key={product.id} plant = {product}/>
+                        })
+                        }} */}
+                        {value=>{
+                        return value.plants.map(product => {
 
                             return <Product key={product.id} plant = {product}/>
                         })

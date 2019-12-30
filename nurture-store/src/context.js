@@ -10,7 +10,8 @@ const ProductContext = React.createContext();
     class ProductProvider extends Component {
         state ={
             products: storeProducts,
-            detailProduct:detailProduct
+            detailProduct:detailProduct,
+            plants: []
         }
 
         handleDetail = () =>{
@@ -21,7 +22,19 @@ const ProductContext = React.createContext();
             console.log("hello from add to cart")
         }
 
+        componentDidMount(){
+            fetch("http://localhost:3000/plants")
+            .then(r => r.json())
+            .then((plantsArr) => {
+                //console.log(plantsArr)
+                this.setState({
+                    plants: plantsArr
+                })
+            })
+        }
+
         render() {
+            console.log(this.state.plants)
             return (
                 
                 <ProductContext.Provider value={
