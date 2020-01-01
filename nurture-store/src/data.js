@@ -104,3 +104,17 @@ export const detailProduct = {
   count: 0,
   total: 0
 };
+
+export const detailProduct2 = {
+  id: 1,
+  name: "Monstera Deliciosa",
+  price: 10,
+  inventory: 30,
+  care_category: "intermediate",
+
+  image: "https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_monstera-deliciosa_featured_768x.jpg?v=1576785440",
+  
+  description:
+    "Nicknamed the 'swiss cheese plant', the Monstera deliciosa is famous for its quirky natural leaf holes. A vibrant green beauty, it can give any interior space instant jungle vibes.",
+  inCart: false
+};
