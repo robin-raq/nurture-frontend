@@ -13,7 +13,13 @@ const ProductContext = React.createContext();
             products: [],
             detailProduct: detailProduct2,
             plants: [],
-            cartItems: []
+            cartItems: [detailProduct2, detailProduct2],
+            modalOpen: false,
+            modalProduct: detailProduct2,
+            cartSubTotal:0,
+            cartTax:0,
+            cartTotal:0
+
         }
 
         //helper function to get plant by id
@@ -32,11 +38,56 @@ const ProductContext = React.createContext();
 
         addToCart = (id) => {
             //console.log(`hello from add to cart.id is ${id}`)
-            const plant = this.getItem(id)
+            let tempPlants = [...this.state.plants]
+            const index = tempPlants.indexOf(this.getItem(id))
+            const plant = tempPlants[index]
+            plant.inCart = true
+            let count = 1
+            const price = plant.price
+
+            let total = price * count;
+
             this.setState({
                 cartItems: [...this.state.cartItems,plant]
             })
+            // const plant = this.getItem(id)
+            // this.setState({
+            //     cartItems: [...this.state.cartItems,plant]
+            // })
         }
+
+        openModal = id =>{
+            const plant = this.getItem(id)
+            this.setState({
+                modalProduct: plant,
+                modalOpen: true
+            })
+        }
+
+        closeModal = () =>{
+            this.setState({
+                modalOpen: false
+            })
+        }
+
+        increment = (id) =>{
+            console.log('this is from the increment method')
+
+        }
+
+        decrement = (id) =>{
+            console.log('this is from the decrement method')
+
+        }
+
+        removeItem =(id) =>{
+            console.log('item Removed')
+        }
+
+        clearCart =() =>{
+            console.log('cart cleared')
+        }
+        
 
         // function to grab a copy of products from local dataset
         setProducts =() =>{
@@ -73,7 +124,14 @@ const ProductContext = React.createContext();
                 <ProductContext.Provider value={
                     {...this.state, 
                     handleDetail: this.handleDetail,
-                    addToCart: this.addToCart
+                    addToCart: this.addToCart,
+                    openModal: this.openModal,
+                    closeModal: this.closeModal,
+                    increment: this.increment,
+                    decrement: this.decrement,
+                    removeItem: this.removeItem,
+                    clearCart: this.clearCart
+
                 }}>
                     {this.props.children}
 
