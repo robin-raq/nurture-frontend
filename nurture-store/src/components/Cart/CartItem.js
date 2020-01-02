@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function ({item, value, total, count}) {
-    const{ id, name, price, image} = item
+export default function ({item, value}) {
+    const{ id, name, price, image, count, total} = item
     const{increment, decrement, removeItem} = value
     return (
         <div className ="row my-2 text-capitalize text-center">

@@ -7,7 +7,7 @@ export default function ({value}) {
     return (
         <div className = "container-fluid">
             
-            {cartItems.map(item => <CartItem key ={item.id} item={item} value={value} count = {1} total ={item.price}/>)}
+            {cartItems.map(item => <CartItem key ={item.id} item={item} value={value} />)}
             
         </div>
     )
