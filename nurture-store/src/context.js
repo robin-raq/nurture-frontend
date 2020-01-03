@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {storeProducts, detailProduct, detailProduct2} from './data'
+import {detailProduct2} from './data'
 
 const ProductContext = React.createContext();
 
@@ -11,6 +11,7 @@ const ProductContext = React.createContext();
         state ={
             //products: storeProducts, this gets objects as a reference instead of a copy
             products: [],
+            orders: [],
             detailProduct: detailProduct2,
             plants: [],
             cartItems: [],
@@ -175,6 +176,24 @@ const ProductContext = React.createContext();
                 cartTotal: total
             })
         }
+
+        createOrder = () =>{
+           // console.log("hello from createOrder")
+            fetch(`http://localhost:3000/orders`, {
+                method:'POST',
+                headers: { 
+                    'Content-type': 'application/json',
+                    'accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    customer_id: 1
+                })
+            })
+            .then(resp => resp.json())
+            .then(json_resp => {
+            console.log(json_resp)})
+
+        }
         
 
         
@@ -202,8 +221,26 @@ const ProductContext = React.createContext();
 
         }
 
+        setOrders =() =>{
+            // fetch data from the rails backend
+            fetch("http://localhost:3000/orders")
+            .then(r => r.json())
+            .then((ordersArr) => {
+                //console.log(plantsArr)
+                this.setState({
+                    orders: ordersArr
+                })
+            })
+        }
+
+        cancelOrder =() =>{
+            console.log("Your order has been cancelled")
+        }
+
+
         componentDidMount(){
             this.setProducts(); // copies product from database
+            this.setOrders();
 
             // fetch data from the rails backend
             // fetch("http://localhost:3000/plants")
@@ -217,7 +254,7 @@ const ProductContext = React.createContext();
         }
 
         render() {
-            console.log(this.state.detailProduct)
+            console.log(this.state.orders[0])
             return (
                 
                 <ProductContext.Provider value={
@@ -229,7 +266,10 @@ const ProductContext = React.createContext();
                     increment: this.increment,
                     decrement: this.decrement,
                     removeItem: this.removeItem,
-                    clearCart: this.clearCart
+                    clearCart: this.clearCart,
+                    createOrder: this.createOrder,
+                    cancelOrder: this.cancelOrder
+
 
                 }}>
                     {this.props.children}
