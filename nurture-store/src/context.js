@@ -179,6 +179,8 @@ const ProductContext = React.createContext();
 
         createOrder = () =>{
            // console.log("hello from createOrder")
+            let plantIds = [...this.state.cartItems].map(plant => plant.id)
+            //console.log(plantOrders)
             fetch(`http://localhost:3000/orders`, {
                 method:'POST',
                 headers: { 
@@ -186,12 +188,19 @@ const ProductContext = React.createContext();
                     'accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    customer_id: 1
+                    customer_id: 1,
+                    plant_ids: plantIds
                 })
             })
             .then(resp => resp.json())
-            .then(json_resp => {
-            console.log(json_resp)})
+            .then(newOrder => {
+                console.log(newOrder)
+                this.setState({
+                    orders:[newOrder, ...this.state.orders]
+                }, ()=>{ 
+                    this.clearCart()
+                })
+        })
 
         }
         
@@ -233,8 +242,28 @@ const ProductContext = React.createContext();
             })
         }
 
-        cancelOrder =() =>{
-            console.log("Your order has been cancelled")
+        cancelOrder =(id) =>{
+            let tempOrders = [...this.state.orders]
+            
+            tempOrders = tempOrders.filter(order => order.id !== id)
+            //console.log("Your order has been cancelled")
+            //adv fetch to backend to delete
+            fetch(`http://localhost:3000/orders/${id}`, {
+                method:'DELETE',
+                headers: { 
+                    'Content-type': 'application/json',
+                    'accept': 'application/json'
+                }
+                
+            })
+            .then(resp => resp.json())
+            .then(json_resp => {
+                //console.log(json_resp)
+                this.setState({
+                    orders: tempOrders
+                })
+
+            })
         }
 
 
@@ -254,7 +283,7 @@ const ProductContext = React.createContext();
         }
 
         render() {
-            console.log(this.state.orders[0])
+            //console.log(this.state.orders)
             return (
                 
                 <ProductContext.Provider value={
