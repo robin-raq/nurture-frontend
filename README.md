@@ -1,6 +1,6 @@
 <h1 align="center"> 🎍🌾🎋 Nurture Plant Store 🎋🌾🎍 </h1>
 <p align="center">
-A full stack <code>React.js</code> and <code>Ruby on Rails</code> e-commerce plant app
+A full stack <code>React.js</code> and <code>Ruby on Rails</code> e-commerce plant store app
 </p>
 <p align="center">
 Built with 💚 and ✨ by <a href='https://github.com/robin-raq'>Raq
