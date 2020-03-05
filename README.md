@@ -1,4 +1,3 @@
-# nurture-frontend
 <h1 align="center"> 🎍🌾🎋 Nurture Plant Store 🎋🌾🎍 </h1>
 <p align="center">
 A full stack <code>React.js</code> and <code>Ruby on Rails</code> e-commerce plant app
