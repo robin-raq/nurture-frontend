@@ -15,7 +15,7 @@ Robinson</a>
 ------------
 
 Nurture is an app that aims to provide users a convenient and fun way to
-learn about and shop for house plants. Users can add items to and remove iterms from their cart . Users can click on a plant to see more details about it. Users can create an order from items in their cart. Users can delete an order.
+learn about and shop for house plants. Users can add items to and remove items from their cart . Users can click on a plant to see more details about it. Users can create an order from items in their cart. Users can delete an order.
 
 **Tech Stack**
 --------------
